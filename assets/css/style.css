@@ -1,0 +1,14 @@
+/* CSS Document */
+
+
+#infoPanel{
+    border-style: solid;
+    border-color: #3A3335;
+    background-color: #EFF1F3;
+}
+
+#gamePanel{
+    border-style: solid;
+    border-color: #3A3335;
+    background-color: #ACBDBA;
+}
