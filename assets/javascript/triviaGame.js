@@ -49,39 +49,44 @@ events & actions:
         calculate score | append html
 */
     
-//object that hold the game information
+//game = period from document ready to close
+//round = period from player clicking begin until player answers question or time reaches 00:00
+//
+
+var showQuestion;
+
 var triviaQuestions = {
     question1: {
-        qString:'',
-        qChoices: '',
-        qName: '',
-        qAnswer: '',
-        qClass: '',
-        qLevel: ''
+        qString:'Which is the most predominant element in the Sun?',
+        qChoices: ['Helium', 'Iron', 'Sulphur', 'Hydrogen'],
+        qName: 'qObject1',
+        qAnswer: 'Hydrogen',
+        qClass: '.q1',
+        qLevel: 'lvl1'
     },
     question2: {
-        qString:'',
-        qChoices: '',
-        qName: '',
-        qAnswer: '',
-        qClass: '',
-        qLevel: ''
+        qString:'Which is the closest active galaxy to the Milky Way?',
+        qChoices: ['Sagittarius A', 'Cygnus 11', 'Orionis A', 'Centaurus A'],
+        qName: 'qObject2',
+        qAnswer: 'Centaurus A',
+        qClass: '.q2',
+        qLevel: 'lvl1'
     },
     question3: {
-        qString:'',
-        qChoices: '',
-        qName: '',
-        qAnswer: '',
-        qClass: '',
-        qLevel: ''
+        qString:'How many (official) planets are in our solar system?',
+        qChoices: ['Twenty-Seven', 'Nine', 'Eight', 'Fourteen'],
+        qName: 'qObject3',
+        qAnswer: 'Eight',
+        qClass: '.q3',
+        qLevel: 'lvl1'
     },
     question4: {
-        qString:'',
-        qChoices: '',
-        qName: '',
-        qAnswer: '',
-        qClass: '',
-        qLevel: ''
+        qString:'What is the closest star to our planet?',
+        qChoices: ['Sun', 'Alpha Centuari', 'Proxima Centuari', 'Jupiter'],
+        qName: 'qObject4',
+        qAnswer: 'Sun',
+        qClass: '.q4',
+        qLevel: 'lvl1'
     },
     question5: {
         qString:'',
