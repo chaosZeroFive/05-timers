@@ -27,87 +27,46 @@
     <div class="container-fluid">
         <div class="row">
             <div id="infoPanel" class="col-lg-4">
-                <table width="80%" border="0" cellspacing="1" cellpadding="1">
-                    <tbody>
-                        <tr>
-                        <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-body">
+                            <ul class="card-text">
+                                <div class="badge-primary badge-pill" id="timerDiv">00:00</div>
+                                <button id="btnPlay" type="button" class="btn-primary">Play!</button>
+                                <p>current score</p>
+                                <br>
+                                <p id="qCnt">p</p>
+                                <br>
+                                <p>p</p>
+                                <br>
+                                <p>p</p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="gamePanel" class="col-lg-8">.
-                <table width="80%" border="0" cellspacing="1" cellpadding="1">
-                    <tbody>
-                        <tr>
-                            <td id="questionCell">
-                                <p id="questionText"></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="answerOne">
-                                <label>
-                                    <input type="radio" name="answerRad" value="radio" id="answerRad_0">
-                                        a. 
-                                </label>
-                            </td>
-                            <td id="answerTwo">
-                                <label>
-                                    <input type="radio" name="answerRad" value="radio" id="answerRad_1">
-                                        b. 
-                                </label>
-                            </td>
-                            <td id="answerThree">
-                                <label>
-                                    <input type="radio" name="answerRad" value="radio" id="answerRad_2">
-                                        c. 
-                                </label>
-                            </td>
-                            <td id="answerFour">
-                                <label>
-                                    <input type="radio" name="answerRad" value="radio" id="answerRad_3">
-                                        d. 
-                                </label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            
+            <div id="gamePanel" class="col-lg-8">
+                <p id="qElem">Question</p>
+                <hr>
+                <p>
+                    <label id="answerOne">
+                        <input type="radio" name="answerBtns" value="radio" id="answerBtns_0">
+                        a.</label>
+                    <br>
+                    <label id="answerTwo">
+                        <input type="radio" name="answerBtns" value="radio" id="answerBtns_1">
+                        b.</label>
+                    <br>
+                    <label id="answerThree">
+                        <input type="radio" name="answerBtns" value="radio" id="answerBtns_2">
+                        c.</label>
+                    <br>
+                    <label id="answerFour">
+                        <input type="radio" name="answerBtns" value="radio" id="answerBtns_3">
+                        d.</label>
+                    <br>
+                </p>
             </div>
         </div>
     </div>

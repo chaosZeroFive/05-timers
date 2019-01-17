@@ -51,13 +51,20 @@ events & actions:
     
 //game = period from document ready to close
 //round = period from player clicking begin until player answers question or time reaches 00:00
-//
+
+$(document).ready(function(){
+    $('#timerDiv').hide();
+    
+})
 
 var showQuestion;
+
+var qCount = 0;
 
 var triviaQuestions = {
     question1: {
         qString:'Which is the most predominant element in the Sun?',
+        
         qChoices: ['Helium', 'Iron', 'Sulphur', 'Hydrogen'],
         qName: 'qObject1',
         qAnswer: 'Hydrogen',
@@ -89,16 +96,16 @@ var triviaQuestions = {
         qLevel: 'lvl1'
     },
     question5: {
-        qString:'',
-        qChoices: '',
-        qName: '',
-        qAnswer: '',
-        qClass: '',
-        qLevel: ''
+        qString:'What is the product of Hydrogen fusion?',
+        qChoices: ['Oxygen', 'Helium', 'Carbon', 'Gold'],
+        qName: 'qObject5',
+        qAnswer: 'Helium',
+        qClass: '.q5',
+        qLevel: 'lvl3'
     },
     question6: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -106,7 +113,7 @@ var triviaQuestions = {
     },
     question7: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -114,7 +121,7 @@ var triviaQuestions = {
     },
     question8: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -122,7 +129,7 @@ var triviaQuestions = {
     },
     question9: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -130,7 +137,7 @@ var triviaQuestions = {
     },
     question10: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -138,7 +145,7 @@ var triviaQuestions = {
     },
     question11: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -146,7 +153,7 @@ var triviaQuestions = {
     },
     question12: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -154,7 +161,7 @@ var triviaQuestions = {
     },
     question13: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -162,7 +169,7 @@ var triviaQuestions = {
     },
     question14: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -170,7 +177,7 @@ var triviaQuestions = {
     },
     question15: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -178,7 +185,7 @@ var triviaQuestions = {
     },
     question4: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -186,7 +193,7 @@ var triviaQuestions = {
     },
     question16: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -194,7 +201,7 @@ var triviaQuestions = {
     },
     question17: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -202,7 +209,7 @@ var triviaQuestions = {
     },
     question18: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -210,7 +217,7 @@ var triviaQuestions = {
     },
     question19: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -218,7 +225,7 @@ var triviaQuestions = {
     },
     question9: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -226,7 +233,7 @@ var triviaQuestions = {
     },
     question20: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
@@ -234,19 +241,21 @@ var triviaQuestions = {
     },
     bonusQuestion: {
         qString:'',
-        qChoices: '',
+        qChoices: [],
         qName: '',
         qAnswer: '',
         qClass: '',
         qLevel: ''
     },
 }
+
 var timerObject = {
     timerId: '',
     timerOn: false,
     time: 60,
     timerCurrent: 0
 }
+
 var gameStats = {
     numCorrect: 0,
     numIncorrect: 0,
@@ -259,7 +268,11 @@ var gameStats = {
 }
 
 //need a function to start the game
-
+$('#btnPlay').on('click', function(){
+    $('#timerDiv').show();
+    $('#btnPlay').hide();
+    nextQuestion();
+})
 //need a function to display and change the questions
 
 //need a function to evaluate the responses
@@ -278,3 +291,13 @@ function runTimer(){
     
 }
 
+function nextQuestion(){
+    qCount++;
+    $('#qCnt').html(qCount);
+    $('#qElem').html(triviaQuestions.question1.qString);
+    
+    $('#answerOne').append(' ' + triviaQuestions.question1.qChoices[0]);
+    $('#answerTwo').append(' ' + triviaQuestions.question1.qChoices[1]);
+    $('#answerThree').append(' ' + triviaQuestions.question1.qChoices[2]);
+    $('#answerFour').append(' ' + triviaQuestions.question1.qChoices[3]);
+}
