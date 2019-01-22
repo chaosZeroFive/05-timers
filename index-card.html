@@ -6,30 +6,62 @@
 <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="container">
-        <div class="jumbotron jumbotron-fluid" style="width: 50%">
-            <div class="card">
-                <div class="card-header" id="divTimer">header</div>
-                <div class="card-title" id="qInfo" ></div>
-                <div class="card-body">
-                    <p id="qText">paragraph</p>
-                    <hr>
-                    <ul class="list-group">
-                        <li class="list-group-item" id="aChoice0"></li>
-                        <li class="list-group-item" id="aChoice1"></li>
-                        <li class="list-group-item" id="aChoice2"></li>
-                        <li class="list-group-item" id="aChoice3"></li>
-                    </ul>
-                </div>
-                <div class="card-footer">
-                    <button id="btnStart">Start</button>
-                    <button id="btnDone">Done</button>
-                </div>
-            </div>
-        </div>
+    
+    <div class="jumbotron" style="width: 50%">
+        <img id="imgTop" src="assets/images/1x/img100place-holder.png" alt="image">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="cellTimer">timer</td>
+                </tr>
+                <tr>
+                    <td id="cellQuestion">question</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="answer-group" value="0" id="answer-group_0">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="answer-group" value="1" id="answer-group_1">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="answer-group" value="2" id="answer-group_2">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="answer-group" value="3" id="answer-group_3">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Blank Cell</td>
+                </tr>
+                <tr>
+                    <td>Blank Cell</td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="btnStart">Start</button>
+                        <button id="btnDone">Done</button>
+                        <button id="btnReset">Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    
-    
+   
     
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> 
