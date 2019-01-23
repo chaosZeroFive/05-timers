@@ -6,62 +6,76 @@
 <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    
-    <div class="jumbotron" style="width: 50%">
-        <img id="imgTop" src="assets/images/1x/img100place-holder.png" alt="image">
-        <table>
-            <tbody>
-                <tr>
-                    <td id="cellTimer">timer</td>
-                </tr>
-                <tr>
-                    <td id="cellQuestion">question</td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
-                            <input type="radio" name="answer-group" value="0" id="answer-group_0">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
-                            <input type="radio" name="answer-group" value="1" id="answer-group_1">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
-                            <input type="radio" name="answer-group" value="2" id="answer-group_2">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
-                            <input type="radio" name="answer-group" value="3" id="answer-group_3">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Blank Cell</td>
-                </tr>
-                <tr>
-                    <td>Blank Cell</td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="btnStart">Start</button>
-                        <button id="btnDone">Done</button>
-                        <button id="btnReset">Reset</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <div class="container" style="width: 50%">
+            <img id="imgTop" src="assets/images/1x/img100place-holder.png" alt="image">
+            <table>
+                <tbody>
+                    <tr>
+                        <td id="cellTimer">timer</td>
+                    </tr>
+                    <tr>
+                        <td id="cellQuestion">question</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="answer-group" value="0" id="answer-group_0">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="answer-group" value="1" id="answer-group_1">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="answer-group" value="2" id="answer-group_2">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="answer-group" value="3" id="answer-group_3">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="cellMessage">cellMessage</td>
+                    </tr>
+                    <tr>
+                        <td>Blank Cell</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn-primary" id="btnStart">Start</button>
+                            <button class="btn-primary" id="btnDone">Done</button>
+                            <button class="btn-primary" id="btnReset">Reset</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-   
     
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> 

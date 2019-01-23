@@ -1,10 +1,9 @@
 // JavaScript Document
 //hide the submit
 $(document).ready(function(){
-    console.log(questionList);
-    console.log(timeRemaining);
-    console.log(messages);
-    console.log(qCount);
+    console.log('**********function**********');
+    console.log('document ready');
+    $('#btnReset').hide();
 });
 
 
@@ -92,10 +91,12 @@ var newArray = [];
 
 var holder = [];
 
-$('#btnReset').hide();
+
 
 $('#btnStart').on('click', function(){
+    console.log('**********click**********');
     $('#btnStart').hide();
+    console.log('Player clicked btnStart');
     displayQuestion();
     runTimer();
     for (var i = 0; i < questionList.length; i++){
@@ -105,94 +106,131 @@ $('#btnStart').on('click', function(){
 });
 
 function runTimer(){
+    console.log('**********function**********');
+    console.log('runTimer was called');
     if (!running){
         intervalId = setInterval(decrement, 1000);
+        console.log('decrement interval set to 1 second from runTimer() function if statement');
         running = true;
+        console.log('running set to true from runTimer() function if statement');
     }
 }
 
 function decrement(){
-    $('#divTimer').html('<h3>Time Remaining: ' + timeRemaining + '</h3>');
+    console.log('**********function**********');
+    console.log('Time Remaining: ' + timeRemaining);
+    $('#cellTimer').html('<h3>Time Remaining: ' + timeRemaining + '</h3>');
     timeRemaining--;
     
     if (timeRemaining === 0){
         unanswered++;
+        console.log('unanswered increased by 1');
         stop();
-        $('#qInfo').html('<p>Time is up!  The correct answer is ' + pick.qChoices[pick.qAnswer] + '</p>');
+        console.log('stop() called from decrement() function if statement');
+        $('#cellMessage').html('<p>Time is up!  The correct answer is ' + pick.qChoices[pick.qAnswer] + '</p>');
         hideImage();
     }
 }
 
 function stop(){
+    console.log('**********function**********');
+    console.log('stop() called');
     running = false;
+    console.log('running set to false from stop() function');
     clearInterval(intervalId);
+    console.log('clearInterval() called from stop() function');
     
 }
 
 function displayQuestion(){
+    console.log('**********function**********');
+    console.log('displayQuestion() called');
     index = Math.floor(Math.random()*questionList.length);
     pick = questionList[index];
-    $('#qText').html('<h2>' + pick.qString + '</h2');
+    $('#cellQuestion').html('<h2>' + pick.qString + '</h2');
     for (var i = 0; i < pick.qChoices.length; i++){
         var userChoice = $('<div>');
         userChoice.addClass('answer-choice');
         userChoice.html(pick.qChoices[i]);
         userChoice.attr('data-guessvalue', i);
-        $('#qText').append(userChoice);
+        $('#cellQuestion').append(userChoice);
     }
 }
 $('.answer-choice').on('click', function(){
+    console.log('**********click**********');
+    console.log('player clicked .answer-choice');
     playerGuess = parseInt($(this).attr('data-guessvalue'));
     
     if (playerGuess === pick.qAnswer){
         stop();
+        console.log('stop() called from answer-choice click event if statement');
         answerCorrect++;
+        console.log('answerCorrect increased by 1');
         playerGuess = '';
-        $('#qInfo').html('<p>Correct!</p>');
+        $('#cellMessage').html('<p>Correct!</p>');
         hideImage();
+        console.log('hideImage() called from answer-choice click event');
     }
     else {
         stop();
+        console.log('stop() called from answer-choice click event else statement');
         answerIncorrect++;
+        console.log('answerIncorrect increased by 1');
         playerGuess='';
-        $('#qInfo').html('<p>Opps! the correct answer is' + pick.qChoices[pick.qAnswer] +  '</p>');
+        $('#cellMessage').html('<p>Opps! the correct answer is' + pick.qChoices[pick.qAnswer] +  '</p>');
         hideImage();
     }
 });
 function hideImage(){
+    console.log('**********function**********');
+    console.log('hideImage() called');
     $('#imgTop').attr('src', pick.qImage);
     newArray.push(pick);
     questionList.splice(index, 1);
     
     var imgHide = setTimeout(function(){
         $('#imgTop').empty();
+        console.log('imgTop emptied');
         timeRemaining = 5;
+        console.log('timeRemaining set to 5');
         
         if ((answerIncorrect + answerCorrect + unanswered) === qCount){
-            $('#qText').empty();
-            $('#qText').html('<h3>Game Over</h3>');
+            $('#cellQuestion').empty();
+            $('#cellQuestion').html('<h3>Game Over</h3>');
             $('#answer-block').append('<h4>Correct: ' + answerCorrect + '</h4>');
             $('#answer-block').append('<h4>Incorrect: ' + answerIncorrect + '</h4>');
             $('#answer-block').append('<h4>Not Answered: ' + unanswered + '</h4>');
-            $('#reset').show();
+            $('#btnReset').show();
             answerCorrect = 0;
+            console.log('');
             answerIncorrect = 0;
+            console.log('');
             unanswered = 0;
+            console.log('');
         }
         else {
             runTimer();
+            console.log('runTimer() called from hideImage() function');
             displayQuestion();
+            console.log('displayQuestion() called from hideImage() function');
         }
     }, 3000);
 }
 
-$('#reset').on('click', function(){
-    $('#reset').hide();
+$('#btnReset').on('click', function(){
+    console.log('**********click**********');
+    $('#btnReset').hide();
+    console.log('btnReset hidden');
     $('#answer-block').empty();
-    $('#qText').empty();
+    console.log('answer-block emptied');
+    $('#cellQuestion').empty();
+    console.log('cellQuestion emptied');
     for (var i = 0; holder.length; i++){
         questionList.push(holder[i]);
     }
     runTimer();
+    console.log('runTimer() called from btnReset click');
     displayQuestion();
+    console.log('displayQuestion() called from btnReset click');
+    console.log('');
 });
