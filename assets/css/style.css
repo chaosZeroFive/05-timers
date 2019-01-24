@@ -1,1 +1,6 @@
 /* CSS Document */
+
+.btn-primary{
+    display: block;
+    width: 60px;
+}
