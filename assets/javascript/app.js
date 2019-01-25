@@ -102,10 +102,9 @@ $('#btnDone').on('click', function(){
     console.log('Question Number = ' + qNum);
 });
 
-$('.answer-block input:radio').on('checked', function(){
-    var text = $('input:radio').text();
-    selectedAnswer = $(this).val(text);
-    console.log(selectedAnswer);
+$('input:radio').on('click', function(e){
+    
+    console.log(e.currentTarget.name);
 })
 
 
