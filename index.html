@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trivia Game | Alton Carroll</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Alton Carroll | Trivia Game </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,69 +20,34 @@
             </ul>
         </div>
     </nav>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div id="infoPanel" class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-body">
-                            <ul class="card-text">
-                                <div class="badge-primary badge-pill" id="timerDiv">00:00</div>
-                                <button id="btnPlay" type="button" class="btn-primary">Play!</button>
-                                <p>current score</p>
-                                <br>
-                                <p id="qCnt">p</p>
-                                <br>
-                                <p>p</p>
-                                <br>
-                                <p>p</p>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="gamePanel" class="col-lg-8">
-                <p id="qElem">Question</p>
-                <hr>
-                <p>
-                    <label id="answer-one">
-                        <input type="radio" name="answerBtns" value="radio" id="answerBtn1">
-                        a.</label>
-                    <br>
-                    <label id="answer-two">
-                        <input type="radio" name="answerBtns" value="radio" id="answerBtn2">
-                        b.</label>
-                    <br>
-                    <label id="answer-three">
-                        <input type="radio" name="answerBtns" value="radio" id="answerBtn3">
-                        c.</label>
-                    <br>
-                    <label id="answer-four">
-                        <input type="radio" name="answerBtns" value="radio" id="answerBtn4">
-                        d.</label>
-                    <br>
-                </p>
-            </div>
+    <button class="btn-primary" id="start">Start</button>
+    <button class="btn-primary" id="next">Next</button>
+    <div class="card text-center" id="game-card">
+        <div class="card-header" id="header"></div>
+        <div class="card-body">
+            <div class="card-title" id="title"></div>
+            <div class="list-group list-group-flush text-left" id="list"></div>
+        </div>
+        <div class="card-footer text-left" id="card-footer">
+        <p id="numCorrect">Correct: </p>
+        <p id="numIncorrect">Incorrect: </p>
+        <p id="numMissed">Unaswered: </p>
         </div>
     </div>
-    
     <div class="container">
         <hr>
         <div class="row">
             <div class="text-center col-lg-6 offset-lg-3">
-                <h4>Portfolio</h4>
-                <p>Copyright &copy; 2018 &middot; All Rights Reserved &middot; 
-                    <a href="about.html" >Alton Carroll</a>
+                <h4>Trivia Game</h4>
+                <p>Copyright &copy; 2019 &middot; All Rights Reserved &middot; 
+                    <a href="https://chaoszerofive.github.io/about.html" >Alton Carroll</a>
                 </p>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="assets/javascript/triviaGame.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
+    <script src="assets/javascript/app.js"></script>
 </body>
 </html>
-
