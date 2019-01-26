@@ -1,197 +1,201 @@
-// JavaScript Document
-//hide the submit
-$(document).ready(function(){
-    console.log('**********function**********');
-    console.log('document ready');
-    $('#btnReset').hide();
-    $('#btnDone').hide();
-    $('#game').hide();
+$(document).ready(function () {
+    getTrivia();
+    console.log('timerInterval: ' + timerInterval);
+    $('#next').hide();
 });
+//array of questions
+var questionArray = [{
+        qString: 'Which is the most predominant element in the Sun?',
+        qChoice: ['Helium', 'Iron', 'Sulphur', 'Hydrogen'],
+        qAnswer: 3,
+        qImage: 'assets/images/1x/img100place-holder.png',
+        aImage: 'assets/images/1x/img100place-holder.png'
+    },
 
-var qList = [
     {
-    qString: 'Which is the most predominant element in the Sun?',
-    qChoices: ['Helium', 'Iron', 'Sulphur', 'Hydrogen'],
-    qName: 'qObject1',
-    qAnswer: 'Hydrogen',
-    qLevel: 'lvl1',
-    qImage: 'assets/images/1x/img100place-holder.png',
-    aImage: 'assets/images/1x/img100place-holder.png'
+        qString: 'Which is the closest active galaxy to the Milky Way?',
+        qChoice: ['Sagittarius A', 'Cygnus 11', 'Orionis A', 'Centaurus A'],
+        qAnswer: 3,
+        qImage: 'assets/images/1x/img100place-holder.png',
+        aImage: 'assets/images/1x/img100place-holder.png'
     },
-    
+
     {
-    qString: 'Which is the closest active galaxy to the Milky Way?',
-    qChoices: ['Sagittarius A', 'Cygnus 11', 'Orionis A', 'Centaurus A'],
-    qAnswer: 'Centaurus A',
-    qImage: 'assets/images/1x/img100place-holder.png',
-    aImage: 'assets/images/1x/img100place-holder.png'
+        qString: 'How many (official) planets are in our solar system?',
+        qChoice: ['Twenty-Seven', 'Nine', 'Eight', 'Fourteen'],
+        qAnswer: 2,
+        qImage: 'assets/images/1x/img100place-holder.png',
+        aImage: 'assets/images/1x/img100place-holder.png'
     },
-    
+
     {
-    qString: 'How many (official) planets are in our solar system?',
-    qChoices: ['Twenty-Seven', 'Nine', 'Eight', 'Fourteen'],
-    qAnswer: 'Eight',
-    qImage: 'assets/images/1x/img100place-holder.png',
-    aImage: 'assets/images/1x/img100place-holder.png'
+        qString: 'What is the closest star to our planet?',
+        qChoice: ['Sun', 'Alpha Centuari', 'Proxima Centuari', 'Jupiter'],
+        qAnswer: 0,
+        qImage: 'assets/images/1x/img100place-holder.png',
+        aImage: 'assets/images/1x/img100place-holder.png'
     },
-    
+
     {
-    qString: 'What is the closest star to our planet?',
-    qChoices: ['Sun', 'Alpha Centuari', 'Proxima Centuari', 'Jupiter'],
-    qAnswer: 'Sun',
-    qImage: 'assets/images/1x/img100place-holder.png',
-    aImage: 'assets/images/1x/img100place-holder.png'
-    },
-        
-    {
-    qString: 'What is the product of Hydrogen fusion?',
-    qChoices: ['Oxygen', 'Helium', 'Carbon', 'Gold'],
-    qAnswer: 'Helium',
-    qImage: 'assets/images/1x/img100place-holder.png',
-    aImage: 'assets/images/1x/img100place-holder.png'
+        qString: 'What is the product of Hydrogen fusion?',
+        qChoice: ['Oxygen', 'Helium', 'Carbon', 'Gold'],
+        qAnswer: 1,
+        qImage: 'assets/images/1x/img100place-holder.png',
+        aImage: 'assets/images/1x/img100place-holder.png'
     }
 ];
-var timeRem;
 
-var messages = {
-    correct: 'Good Job!',
-    incorrect: 'Good try...',
-    endTime: 'Opps...Time is Up!',
-    finished: 'Your Done'
+//object to hold the current question & answers
+var currentTrivia = {
+    question: '',
+    choice0: '',
+    choice1: '',
+    choice2: '',
+    choice3: '',
+    answer: '',
+    image0: '',
+    image1: ''
 }
+
+
+var isRunning = false; //boolean to test if timer is running
+
+var timerInterval; //holds the setInterval for timerRun
+
+var isAnswered = false; //boolean to test if player has answered
+
+var currentQuestion = 0; //var to hold the current question index -- 0 is starting value
+
+var time = 5; //var to hold the start time
 
 var gameStats = {
-    correct: 0,
-    incorrect: 0,
-    unanswered: 0
+    correct: 0,    //number of correct answers
+    incorrect: 0,  //number of incorrect answers
+    unanswered: 0  //number of questions not answered
 }
 
-var timerRunning = false;
+var clickVal; //var to hold the players answer selection
 
-var timerInt;
-
-var qNum;
-
-var currentQuestion;
-
-var aChoice0;
-
-var aChoice1;
-
-var aChoice2;
-
-var aChoice3;
-
-var currentImage;
-
-var correctAnswer;
-
-var selectedAnswer;
-
-$('#btnStart').on('click', function(){
-    qNum = 0;
-    getTrivia();
-    timer();
-    console.log('Player clicked Start button');
-});
-
-$('#btnDone').on('click', function(){
-    stop();
-    setTimeout(clear, 1000);
-    console.log('Player clicked Done button');
-    console.log('Question Number = ' + qNum);
-});
-
-$('input:radio').on('click', function(e){
-    
-    console.log(e.currentTarget.name);
-})
-
-
-//uses qNum as the index as the next question in the sensquence
-function getTrivia(){
-    $('.question').empty();
-    $('.answer-block').empty();
-    var n = qList[qNum];
-    currentQuestion = n.qString;
-    aChoice0 = n.qChoices[0];
-    aChoice1 = n.qChoices[1];
-    aChoice2 = n.qChoices[2];
-    aChoice3 = n.qChoices[3];
-    currentImage = n.qImage;
-    correctAnswer = n.qAnswer;
-    console.log('qNum = ' + qNum);
-    console.log('Current Question: ' + currentQuestion);
-    console.log('Answer Choice 1: ' + aChoice0);
-    console.log('Answer Choice 2: ' + aChoice1);
-    console.log('Answer Choice 3: ' + aChoice2);
-    console.log('Answer Choice 4: ' + aChoice3);
-    console.log('path to image: ' + currentImage);
-    $('.timer').html('<h5>Time Remaining: 5</h5>');
-    $('#game').show();
-    $('#btnDone').show();
-    $('#btnStart').hide();
-    displayQuestion();
-    displayAnswers();
-    displayImage();
-}
-function displayQuestion(){
-    $('.question').html('<h3>' + currentQuestion + '</h3>');
-}
-
-function displayAnswers(){
-    $('.answer-block').append('<input type="radio"  name="answer-group" id="answer-group_0">' + '<label><h4>' + aChoice0 + '</h4></label><br>');
-    $('.answer-block').append('<input type="radio"  name="answer-group" id="answer-group_1">' + '<label><h4>' + aChoice1 + '</h4></label><br>');
-    $('.answer-block').append('<input type="radio"  name="answer-group" id="answer-group_2">' + '<label><h4>' + aChoice2 + '</h4></label><br>');
-    $('.answer-block').append('<input type="radio"  name="answer-group" id="answer-group_3">' + '<label><h4>' + aChoice3 + '</h4></label><br>');
-}
-
-function displayImage(){
-    $('.trivia-image').html('<img src="' + currentImage + '" alt="image">');
-}
-
-//time set to 5 for testing
-function timer(){
-    timeRem = 5;
-    if (!timerRunning){
-        timeRem = 5;
-        timerInt = setInterval(countDown, 1000);
-    }
-    console.log('Time Remaining: ' + timeRem);
-}
-
-function countDown(){
-    timeRem--;
-    console.log('Time Remianing: ' + timeRem);
-    $('.timer').html('<h5>Time Remaining: ' + timeRem + '</h5>');
-    if (timeRem === 0){
-        gameStats.unanswered++;
-        stop();
-        $('#btnDone').text('Next');
+var showRdy = function(){
+    if (isRunning || isAnswered){
+        nextTrivia();
+        $('#next').show();
     }
 }
 
-function stop(){
-    timerRunning = false;
-    clearInterval(timerInt);
-    qNum++;
-    //setTimeout(next, 2000);
+var timerRun = function() {
+    if (isRunning && time > 0) { //isRunning default value is false
+        time--;
+        $('#header').html('Time Remaining: ' + time);
+        console.log('Time Remaining: ' + time);
+    }
+    else timerExpired();
 }
 
-function clear(){
-    if (qNum <= qList.length){
-        next();
-    }
-    else{
-        $('.timer').empty();
-        $('.question').empty();
-        $('.answer-block').empty();
-    }
-    
+function timerExpired() {
+    console.log('timerExpired() called');
+    resetTimer();
+    isRunning = false;
+    console.log('isRunning: ' + isRunning)
+    gameStats.unanswered++;
+    console.log('gameStats.unanswered: ' + gameStats.unanswered);
+    $('#header').html('Time is Up!');
+    $('#numMissed').html('Missed: ' + gameStats.unanswered);
 }
 
-function next(){
+function resetTimer() {
+    console.log('resetTimer() called');
+    clearInterval(timerInterval);
+    console.log('timerInterval: ' + timerInterval);
+}
+
+function timerSet() {
+    console.log('timerSet() called')
+    timerInterval = setInterval(timerRun, 1000);
+    console.log('timerInterval: ' + timerInterval);
+    isRunning = true;
+    console.log('isRunning: ' + isRunning);
+}
+//if the difference between the sum of answers and the number of questions equal to or greater game over
+function nextTrivia() {
+    if (gameStats.correct + gameStats.incorrect >= questionArray.length) {
+        gameOver();
+    }
+    else {
         getTrivia();
-        timer();
+    }
+}
+
+//
+$('#start').on('click', function () {
+    $('#start').hide();
+    console.log('start clicked');
+    showTrivia();
+    console.log('showTrivia() called');
+    timerSet();
+});
+
+$('#list').on('click', '.list-group-item', function () {
+    console.log('player selected: ' + $(this).text());
+    isAnswered = true;
+    console.log('isAnswered: ' + isAnswered);
+    clickVal = parseInt($(this).attr('value'));
+    answerEval();
+});
+
+function answerEval(){
+    console.log('answerEval() called');
+    var a = parseInt(currentTrivia.answer);
+    var c = clickVal;
+    if (c !== a) {
+        console.log('Player selected wrong answer: ' + $(this).text());
+        $('#header').html('Good Try!');
+        $('#numIncorrect').html('Incorrect: ' + gameStats.incorrect);
+        gameStats.incorrect++;
+    } else {
+        console.log('Player selected correct answer: ' + $(this).text());
+        $('#header').html('Good Job!');
+        $('#numCorrect').html('Correct: ' + gameStats.correct);
+        gameStats.correct++;
+    }
+}
+
+function getTrivia() {
+    console.log('getTrivia() called');
+    $('#header').empty();
+    $('#title').empty();
+    $('#list').empty();
+    var q = questionArray[currentQuestion];
+    currentTrivia.question = q.qString;
+    currentTrivia.choice0 = q.qChoice[0];
+    currentTrivia.choice1 = q.qChoice[1];
+    currentTrivia.choice2 = q.qChoice[2];
+    currentTrivia.choice3 = q.qChoice[3];
+    currentTrivia.answer = q.qAnswer;
+    currentTrivia.image0 = q.qImage;
+    currentTrivia.image1 = q.aImage;
+    console.log('getTrivia() | currentQuestion: ' + currentQuestion);
+    console.log('getTrivia() | currentTrivia.question: ' + currentTrivia.question);
+    console.log('getTrivia() | currentTrivia.choice0: ' + currentTrivia.choice0);
+    console.log('getTrivia() | currentTrivia.choice1: ' + currentTrivia.choice1);
+    console.log('getTrivia() | currentTrivia.choice2: ' + currentTrivia.choice2);
+    console.log('getTrivia() | currentTrivia.choice3: ' + currentTrivia.choice3);
+    console.log('getTrivia() | currentTrivia.answer: ' + currentTrivia.answer);
+}
+
+function showTrivia() {
+    console.log('showTrivia() called');
+    var a1 = '<a href="#" class="list-group-item" value=0 id="aChoice1">' + currentTrivia.choice0 + '</a>';
+    var a2 = '<a href="#" class="list-group-item" value=1 id="aChoice2">' + currentTrivia.choice1 + '</a>';
+    var a3 = '<a href="#" class="list-group-item" value=2 id="aChoice3">' + currentTrivia.choice2 + '</a>';
+    var a4 = '<a href="#" class="list-group-item" value=3 id="aChoice4">' + currentTrivia.choice3 + '</a>';
+    $('#header').html('Time Remaining: ');
+    $('#title').html(currentTrivia.question);
+    $('#list').append(a1, a2, a3, a4);
+}
+
+function gameOver() {
+    console.log('gameOver() called');
+    $('#game-card').html('<strong>Game Over</strong>')
 }
 
