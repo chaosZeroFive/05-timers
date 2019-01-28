@@ -1,6 +1,7 @@
 $(document).ready(function () {
+    currentQuestion = -1;
     getTrivia();
-    console.log('timerInterval: ' + timerInterval);
+    console.log('@ document.ready | timerInterval: ' + timerInterval);
     $('#next').hide();
 });
 //array of questions
@@ -76,18 +77,34 @@ var gameStats = {
 
 var clickVal; //var to hold the players answer selection
 
-var showRdy = function(){
-    if (isRunning || isAnswered){
-        nextTrivia();
-        $('#next').show();
-    }
-}
+
+$('#start').on('click', function () {
+    currentQuestion++;
+    $('#start').hide();
+    console.log('@ start click | start clicked');
+    showTrivia();
+    timerSet();
+});
+
+$('#list').on('click', '.list-group-item', function () {
+    console.log('player selected: ' + $(this).text());
+    isAnswered = true;
+    console.log('@ answer click | isAnswered: ' + isAnswered);
+    clickVal = parseInt($(this).attr('value'));
+    answerEval();
+});
+
+$('#next').on('click', function(){
+    $('#next').hide();
+    showTrivia();
+    timerSet();
+})
 
 var timerRun = function() {
     if (isRunning && time > 0) { //isRunning default value is false
         time--;
         $('#header').html('Time Remaining: ' + time);
-        console.log('Time Remaining: ' + time);
+        console.log('@ var timerRun | Time Remaining: ' + time);
     }
     else timerExpired();
 }
@@ -96,9 +113,9 @@ function timerExpired() {
     console.log('timerExpired() called');
     resetTimer();
     isRunning = false;
-    console.log('isRunning: ' + isRunning)
+    console.log('@ timerExpired() | isRunning: ' + isRunning)
     gameStats.unanswered++;
-    console.log('gameStats.unanswered: ' + gameStats.unanswered);
+    console.log('@ timerExpired() | gameStats.unanswered: ' + gameStats.unanswered);
     $('#header').html('Time is Up!');
     $('#numMissed').html('Missed: ' + gameStats.unanswered);
 }
@@ -106,54 +123,44 @@ function timerExpired() {
 function resetTimer() {
     console.log('resetTimer() called');
     clearInterval(timerInterval);
-    console.log('timerInterval: ' + timerInterval);
+    console.log('@ resetTimer() | timerInterval: ' + timerInterval);
 }
 
 function timerSet() {
     console.log('timerSet() called')
     timerInterval = setInterval(timerRun, 1000);
-    console.log('timerInterval: ' + timerInterval);
+    console.log('@ timerSet() | timerInterval: ' + timerInterval);
     isRunning = true;
-    console.log('isRunning: ' + isRunning);
+    console.log('@ timerSet() | isRunning: ' + isRunning);
+    
 }
 //if the difference between the sum of answers and the number of questions equal to or greater game over
 function nextTrivia() {
+    console.log('nextTrivia() called')
     if (gameStats.correct + gameStats.incorrect >= questionArray.length) {
+        console.log('@ if | nextTrivia() called')
         gameOver();
     }
     else {
-        getTrivia();
+        console.log('@ else | nextTrivia() called')
+        $('#next').show();
     }
 }
 
 //
-$('#start').on('click', function () {
-    $('#start').hide();
-    console.log('start clicked');
-    showTrivia();
-    console.log('showTrivia() called');
-    timerSet();
-});
-
-$('#list').on('click', '.list-group-item', function () {
-    console.log('player selected: ' + $(this).text());
-    isAnswered = true;
-    console.log('isAnswered: ' + isAnswered);
-    clickVal = parseInt($(this).attr('value'));
-    answerEval();
-});
 
 function answerEval(){
+    currentQuestion++;
     console.log('answerEval() called');
     var a = parseInt(currentTrivia.answer);
     var c = clickVal;
     if (c !== a) {
-        console.log('Player selected wrong answer: ' + $(this).text());
+        console.log('@ answerEval() | Player selected wrong answer: ' + $(this).text());
         $('#header').html('Good Try!');
         $('#numIncorrect').html('Incorrect: ' + gameStats.incorrect);
         gameStats.incorrect++;
     } else {
-        console.log('Player selected correct answer: ' + $(this).text());
+        console.log('@ answerEval() | Player selected correct answer: ' + $(this).text());
         $('#header').html('Good Job!');
         $('#numCorrect').html('Correct: ' + gameStats.correct);
         gameStats.correct++;
@@ -174,13 +181,13 @@ function getTrivia() {
     currentTrivia.answer = q.qAnswer;
     currentTrivia.image0 = q.qImage;
     currentTrivia.image1 = q.aImage;
-    console.log('getTrivia() | currentQuestion: ' + currentQuestion);
-    console.log('getTrivia() | currentTrivia.question: ' + currentTrivia.question);
-    console.log('getTrivia() | currentTrivia.choice0: ' + currentTrivia.choice0);
-    console.log('getTrivia() | currentTrivia.choice1: ' + currentTrivia.choice1);
-    console.log('getTrivia() | currentTrivia.choice2: ' + currentTrivia.choice2);
-    console.log('getTrivia() | currentTrivia.choice3: ' + currentTrivia.choice3);
-    console.log('getTrivia() | currentTrivia.answer: ' + currentTrivia.answer);
+    console.log('@ getTrivia() | currentQuestion: ' + currentQuestion);
+    console.log('@ getTrivia() | currentTrivia.question: ' + currentTrivia.question);
+    console.log('@ getTrivia() | currentTrivia.choice0: ' + currentTrivia.choice0);
+    console.log('@ getTrivia() | currentTrivia.choice1: ' + currentTrivia.choice1);
+    console.log('@ getTrivia() | currentTrivia.choice2: ' + currentTrivia.choice2);
+    console.log('@ getTrivia() | currentTrivia.choice3: ' + currentTrivia.choice3);
+    console.log('@ getTrivia() | currentTrivia.answer: ' + currentTrivia.answer);
 }
 
 function showTrivia() {
@@ -192,6 +199,7 @@ function showTrivia() {
     $('#header').html('Time Remaining: ');
     $('#title').html(currentTrivia.question);
     $('#list').append(a1, a2, a3, a4);
+    
 }
 
 function gameOver() {
