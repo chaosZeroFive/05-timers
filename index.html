@@ -20,20 +20,41 @@
             </ul>
         </div>
     </nav>
-    <button class="btn-primary" id="start">Start</button>
-    <button class="btn-primary" id="next">Next</button>
-    <div class="card text-center" id="game-card">
-        <div class="card-header" id="header"></div>
+    
+    <div class="card">
+        <div class="card-header"></div>
         <div class="card-body">
-            <div class="card-title" id="title"></div>
-            <div class="list-group list-group-flush text-left" id="list"></div>
+            <p class="card-title"> </p>
+			<div class="custom-control custom-radio">
+				<input type="radio" id="choice0" name="customRadio" class="custom-control-input">
+				<label class="custom-control-label" for="choice0"> </label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input type="radio" id="choice1" name="customRadio" class="custom-control-input">
+				<label class="custom-control-label" for="choice1"> </label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input type="radio" id="choice2" name="customRadio" class="custom-control-input">
+				<label class="custom-control-label" for="choice2"> </label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input type="radio" id="choice3" name="customRadio" class="custom-control-input">
+				<label class="custom-control-label" for="choice3"> </label>
+			</div>
         </div>
-        <div class="card-footer text-left" id="card-footer">
-        <p id="numCorrect">Correct: </p>
-        <p id="numIncorrect">Incorrect: </p>
-        <p id="numMissed">Unaswered: </p>
+        <div class="card-footer" id="card-footer">
+			<button class="btn-primary" id="start">Start</button>
+    		<button class="btn-primary" id="next">Next</button>
         </div>
     </div>
+	<!--alert-->
+	<div class="alert" role="alert"></div>
+	<!--game score elements-->
+	<div class="scores">
+		<p class="card-text" id="correct"> </p>
+		<p class="card-text" id="incorrect"> </p>
+		<p class="card-text" id="missed"> </p>
+	</div>
     <div class="container">
         <hr>
         <div class="row">
