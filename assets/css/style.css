@@ -1,7 +1,18 @@
-/* CSS Document */
 
-.btn-primary{
-    display: block;
-    width: 60px;
+#question{
+	font-size: 20px;
 }
 
+#alert-row{
+	font-size: 15px;
+	
+}
+
+
+#scores{
+	font-size: 15px;
+}
+
+.text-center{
+	color: #333333;
+}

@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>Alton Carroll | Trivia Game </title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="align-items-center">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand active" href="#">Trivia Game</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,52 +22,76 @@
             </ul>
         </div>
     </nav>
-    
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <p class="card-title"> </p>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="choice0" name="customRadio" class="custom-control-input">
-				<label class="custom-control-label" for="choice0"> </label>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="choice1" name="customRadio" class="custom-control-input">
-				<label class="custom-control-label" for="choice1"> </label>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="choice2" name="customRadio" class="custom-control-input">
-				<label class="custom-control-label" for="choice2"> </label>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="choice3" name="customRadio" class="custom-control-input">
-				<label class="custom-control-label" for="choice3"> </label>
-			</div>
-        </div>
-        <div class="card-footer" id="card-footer">
-			
-        </div>
-        <button class="btn-primary" id="start">Start Game</button>
-    </div>
-	<!--alert-->
-	<div class="alert" role="alert"></div>
-	<!--game score elements-->
-	<div class="scores">
-		<p class="card-text" id="correct"> </p>
-		<p class="card-text" id="incorrect"> </p>
-		<p class="card-text" id="missed"> </p>
-	</div>
+	<br>
     <div class="container">
-        <hr>
+		<div class="row">
+			<div class="col-6">
+				<div class="align-content-start" id="trivia">
+					<h3 id="timer"></h3>
+					<br>
+            		<p id="question"></p>
+					<br>
+					<div class="custom-control custom-radio">
+						<input type="radio" id="choice0" name="customRadio" class="custom-control-input">
+						<label class="custom-control-label" for="choice0"></label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" id="choice1" name="customRadio" class="custom-control-input">
+						<label class="custom-control-label" for="choice1"></label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" id="choice2" name="customRadio" class="custom-control-input">
+						<label class="custom-control-label" for="choice2"></label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" id="choice3" name="customRadio" class="custom-control-input">
+						<label class="custom-control-label" for="choice3"></label>
+					</div>
+        		</div>
+				
+				<div class="row" id="alert-row">
+					<div class="col">
+						<div class="alert" role="alert" id="alert">alert</div>
+					</div>
+				</div>
+				<div class="text-left" id="scores">
+					<div class="row">
+						<div class="col-3">
+							<span id="correct"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<span id="incorrect"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<span id="missed"></span>
+						</div>
+					</div>
+				</div>
+				<br>
+        		<div class="row" id="btn">
+					
+						<button class="btn-primary">btn</button>
+				
+				</div>
+    		</div>
+		<hr>
+		</div>
+	</div>
         <div class="row">
-            <div class="text-center col-lg-6 offset-lg-3">
+            <div class="text-center col-sm">
+				<br>
                 <h4>Trivia Game</h4>
                 <p>Copyright &copy; 2019 &middot; All Rights Reserved &middot; 
                     <a href="https://chaoszerofive.github.io/about.html" >Alton Carroll</a>
                 </p>
+				<br>
             </div>
         </div>
-    </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
